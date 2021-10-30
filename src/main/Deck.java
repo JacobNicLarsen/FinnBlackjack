@@ -16,7 +16,7 @@ public class Deck {
         this.deck = deck;
     }
 
-    public Card getTopAndRemove() {
+    public Card drawCard() {
         return deck.pop();
     }
 

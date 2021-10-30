@@ -20,8 +20,8 @@ class DeckTest {
         initDeck.add(card2);
         deck.setDeck(initDeck);
         assertAll("Creating deck",
-                () -> assertEquals(deck.getTopAndRemove(), card2),
-                () -> assertEquals(deck.getTopAndRemove(), card1)
+                () -> assertEquals(deck.drawCard(), card2),
+                () -> assertEquals(deck.drawCard(), card1)
                 );
 
     }
@@ -40,7 +40,7 @@ class DeckTest {
         Deck deck = new Deck();
         deck.add(card);
         assertAll("Returning card and removing",
-                () -> assertEquals(deck.getTopAndRemove(), card),
+                () -> assertEquals(deck.drawCard(), card),
                 () -> assertTrue(deck.isEmpty())
                 );
     }
@@ -63,7 +63,7 @@ class DeckTest {
         deck.add(card);
         assertAll("Checking if remove works",
                 () -> assertFalse(deck.isEmpty()),
-                () -> {deck.getTopAndRemove(); assertTrue(deck.isEmpty());}
+                () -> {deck.drawCard(); assertTrue(deck.isEmpty());}
         );
     }
 

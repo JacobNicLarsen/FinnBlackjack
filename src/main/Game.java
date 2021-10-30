@@ -1,12 +1,14 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Game {
     public static void main(String[] args) {
-        System.out.println("hello");
-        Deck deck = new Deck();
-        deck.fill();
-        System.out.println(deck);
-        deck.shuffle();
-        System.out.println(deck);
+        Gambler gambler = new Gambler("Sam");
+        Dealer dealer = new Dealer("Dealer");
+
+        BlackjackTable blackjackTable = new BlackjackTable(dealer, gambler);
+
+        System.out.println(blackjackTable.fullGame());
     }
 }
