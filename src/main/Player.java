@@ -13,8 +13,6 @@ public abstract class Player {
         this.hand = new ArrayList<Card>();
     }
 
-    public abstract void drawCard(Deck deck);
-
     public String getName() {
         return name;
     }
@@ -50,9 +48,6 @@ public abstract class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", hand=" + hand +
-                '}';
+        return  name + ": " + hand.toString();
     }
 }

@@ -14,41 +14,22 @@ public class BlackjackTable {
     }
 
     public String fullGame() {
+        Player winner;
         initialDraws();
-        if (isWonForGambler()){
-            return "Gambler has won with hand " + gambler;
-        }
-        else if (isWonForDealer()){
-            return "Dealer has won with hand " + dealer;
-        }
-        else {
-            return keepPlaying();
-        }
-    }
-    
+        winner = determineInitialWinner();
+        if (winner != null) return formatOutput(winner);
 
-    public String keepPlaying() {
-        while (gambler.getHandScore() <= 17){
-            gambler.addCardToHand(deck.drawCard());
-        }
-        if (gambler.isHandBust()) {
-            return "Gambler has lost " + gambler;
-        }
-        while (dealer.getHandScore() < gambler.getHandScore()) {
-            dealer.addCardToHand(deck.drawCard());
-        }
-        return determineWinner();
+        winner = gamblerKeepPlaying();
+        if (winner != null) return formatOutput(winner);
+
+        winner = dealerKeepPlaying();
+        if (winner != null) return formatOutput(winner);
+        return "This should not happen";
     }
 
-    public String determineWinner(){
-        if (gambler.isHandBlackjack()) return "gambler wins with blackjack " + gambler + " " + dealer;
-        else if (dealer.isHandBlackjack()) return "gambler wins with blackjack " + dealer + " " + gambler;
-        else if (gambler.getHandScore() > dealer.getHandScore() && !gambler.isHandBust()) return "gambler wins " + gambler + " " + dealer;
-        else if (dealer.getHandScore() > gambler.getHandScore() && ! dealer.isHandBust()) return "dealer wins " + dealer + " " + gambler;
-        else return "something wierd has happend";
+    public String formatOutput(Player winner) {
+        return winner.getName() + "\n" + gambler + "\n" + dealer;
     }
-
-
 
     public void initialDraws() {
         for (int i = 0; i < 2; i++) {
@@ -57,14 +38,29 @@ public class BlackjackTable {
         }
     }
 
-
-    public boolean isWonForDealer(){
-        return dealer.isHandBlackjack();
+    public Player determineInitialWinner() {
+        if (gambler.isHandBlackjack()) return gambler;
+        else if (dealer.isHandBlackjack()) return dealer;
+        else return null;
     }
 
-    public boolean isWonForGambler() {
-        return gambler.isHandBlackjack();
+    public Player gamblerKeepPlaying() {
+        while (gambler.getHandScore() <= 17) {
+            gambler.addCardToHand(deck.drawCard());
+            if (gambler.isHandBust()) return dealer;
+        }
+        return null;
     }
+
+    public Player dealerKeepPlaying() {
+        while (dealer.getHandScore() < gambler.getHandScore()) {
+            dealer.addCardToHand(deck.drawCard());
+            if (dealer.isHandBust()) return gambler;
+        }
+        return dealer;
+    }
+
+
 
     private void giveGamblersCard() {
         gambler.addCardToHand(deck.drawCard());
@@ -73,6 +69,7 @@ public class BlackjackTable {
     private void giveDealerCard() {
         dealer.addCardToHand(deck.drawCard());
     }
+
 
     public Deck getDeck() {
         return deck;
