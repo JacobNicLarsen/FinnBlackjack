@@ -57,7 +57,7 @@ public class Deck {
 
     @Override
     public String toString() {
-        StringJoiner out = new StringJoiner(",");
+        StringJoiner out = new StringJoiner(", ");
         for (Card card : deck) {
             out.add(card.toString());
         }

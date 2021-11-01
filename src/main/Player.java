@@ -13,14 +13,6 @@ public abstract class Player {
         this.hand = new ArrayList<Card>();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getHandScore() {
         int handScore = 0;
         for (Card card : hand) {
@@ -29,6 +21,14 @@ public abstract class Player {
         return handScore;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public ArrayList<Card> getHand() {
         return hand;

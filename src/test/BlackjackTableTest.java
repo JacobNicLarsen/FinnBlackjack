@@ -19,5 +19,7 @@ class BlackjackTableTest {
 
         blackjackTable.initialDraws();
         assertEquals(blackjackTable.getGambler().getHand().size(), 2);
+        assertEquals(blackjackTable.getDealer().getHand().size(), 2);
     }
+
 }

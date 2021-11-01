@@ -5,12 +5,18 @@ public class BlackjackTable {
     private Gambler gambler;
     private Dealer dealer;
 
-    public BlackjackTable(Dealer dealer, Gambler gamblers) {
+    public BlackjackTable(Dealer dealer, Gambler gambler) {
         this.dealer = dealer;
-        this.gambler = gamblers;
+        this.gambler = gambler;
         this.deck = new Deck();
         this.deck.fill();
         this.deck.shuffle();
+    }
+
+    public BlackjackTable(Dealer dealer, Gambler gambler, String filePath) {
+        this.dealer = dealer;
+        this.gambler = gambler;
+        this.deck = FileDeckReader.readDeckFile(filePath);
     }
 
     public String fullGame() {
@@ -27,10 +33,6 @@ public class BlackjackTable {
         return "This should not happen";
     }
 
-    public String formatOutput(Player winner) {
-        return winner.getName() + "\n" + gambler + "\n" + dealer;
-    }
-
     public void initialDraws() {
         for (int i = 0; i < 2; i++) {
             giveGamblersCard();
@@ -41,6 +43,7 @@ public class BlackjackTable {
     public Player determineInitialWinner() {
         if (gambler.isHandBlackjack()) return gambler;
         else if (dealer.isHandBlackjack()) return dealer;
+        else if (gambler.isHandBust() && dealer.isHandBust()) return dealer;
         else return null;
     }
 
@@ -68,6 +71,10 @@ public class BlackjackTable {
 
     private void giveDealerCard() {
         dealer.addCardToHand(deck.drawCard());
+    }
+
+    public String formatOutput(Player winner) {
+        return winner.getName() + "\n" + gambler + "\n" + dealer;
     }
 
 
