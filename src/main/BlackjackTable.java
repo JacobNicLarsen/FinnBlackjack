@@ -1,5 +1,9 @@
 package main;
 
+import main.playerModules.Dealer;
+import main.playerModules.Gambler;
+import main.playerModules.Player;
+
 public class BlackjackTable {
     private Deck deck;
     private Gambler gambler;
@@ -9,8 +13,8 @@ public class BlackjackTable {
         this.dealer = dealer;
         this.gambler = gambler;
         this.deck = new Deck();
-        this.deck.fill();
-        this.deck.shuffle();
+        deck.fill();
+        deck.shuffle();
     }
 
     public BlackjackTable(Dealer dealer, Gambler gambler, String filePath) {
@@ -35,8 +39,8 @@ public class BlackjackTable {
 
     public void initialDraws() {
         for (int i = 0; i < 2; i++) {
-            giveGamblersCard();
-            giveDealerCard();
+            gambler.addCardToHandFromDeck(deck);
+            dealer.addCardToHandFromDeck(deck);
         }
     }
 
@@ -48,30 +52,21 @@ public class BlackjackTable {
     }
 
     public Player gamblerKeepPlaying() {
-        while (gambler.getHandScore() <= 17) {
-            gambler.addCardToHand(deck.drawCard());
+        while (gambler.getHandScore() < 17) {
+            gambler.addCardToHandFromDeck(deck);
             if (gambler.isHandBust()) return dealer;
         }
         return null;
     }
 
     public Player dealerKeepPlaying() {
-        while (dealer.getHandScore() < gambler.getHandScore()) {
-            dealer.addCardToHand(deck.drawCard());
+        while (dealer.getHandScore() <= gambler.getHandScore()) {
+            dealer.addCardToHandFromDeck(deck);
             if (dealer.isHandBust()) return gambler;
         }
         return dealer;
     }
 
-
-
-    private void giveGamblersCard() {
-        gambler.addCardToHand(deck.drawCard());
-    }
-
-    private void giveDealerCard() {
-        dealer.addCardToHand(deck.drawCard());
-    }
 
     public String formatOutput(Player winner) {
         return winner.getName() + "\n" + gambler + "\n" + dealer;
@@ -88,5 +83,9 @@ public class BlackjackTable {
 
     public Dealer getDealer() {
         return dealer;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }

@@ -1,9 +1,6 @@
 package main;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Stack;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class Deck {
     private Stack<Card> deck;
@@ -27,6 +24,10 @@ public class Deck {
 
     public void add(Card card) {
         this.deck.add(card);
+    }
+
+    public void addAdd(Card...cards) {
+        deck.addAll(Arrays.asList(cards));
     }
 
     public boolean isEmpty() {

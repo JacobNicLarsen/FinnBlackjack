@@ -20,8 +20,8 @@ class DeckTest {
         initDeck.add(card2);
         deck.setDeck(initDeck);
         assertAll("Creating deck",
-                () -> assertEquals(deck.drawCard(), card2),
-                () -> assertEquals(deck.drawCard(), card1)
+                () -> assertEquals(card2, deck.drawCard()),
+                () -> assertEquals(card1, deck.drawCard())
                 );
 
     }
@@ -40,7 +40,7 @@ class DeckTest {
         Deck deck = new Deck();
         deck.add(card);
         assertAll("Returning card and removing",
-                () -> assertEquals(deck.drawCard(), card),
+                () -> assertEquals(card, deck.drawCard()),
                 () -> assertTrue(deck.isEmpty())
                 );
     }
@@ -51,7 +51,7 @@ class DeckTest {
         Deck deck = new Deck();
         deck.add(card);
         assertAll("Returning card and removing",
-                () -> assertEquals(deck.getTopAndKeep(), card),
+                () -> assertEquals(card, deck.getTopAndKeep()),
                 () -> assertFalse(deck.isEmpty())
         );
     }
@@ -73,16 +73,16 @@ class DeckTest {
         Card card2 = new Card("S", "A");
         Deck deck = new Deck();
         deck.add(card1);
-        assertEquals(deck.size(), 1);
+        assertEquals(1, deck.size());
         deck.add(card2);
-        assertEquals(deck.size(), 2);
+        assertEquals(2, deck.size());
     }
 
     @Test
     void fillDeckCheckingIf52Cards() {
         Deck deck = new Deck();
         deck.fill();
-        assertEquals(deck.size(), 52);
+        assertEquals(52, deck.size());
     }
 
     @Test
@@ -92,7 +92,7 @@ class DeckTest {
         String notShuffledDeck = deck.toString();
         deck.shuffle();
         String shuffledDeck = deck.toString();
-        assertNotEquals(notShuffledDeck, shuffledDeck);
+        assertNotEquals(shuffledDeck, notShuffledDeck);
     }
 
 }

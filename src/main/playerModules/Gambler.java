@@ -1,6 +1,9 @@
-package main;
+package main.playerModules;
 
-public class Gambler extends Player{
+import main.Deck;
+import main.playerModules.Player;
+
+public class Gambler extends Player {
 
     public Gambler(String name) {
         super(name);
@@ -8,7 +11,7 @@ public class Gambler extends Player{
 
     public void keepPlaying(Deck deck) {
         while (getHandScore() <= 17) {
-            addCardToHand(deck.drawCard());
+            addCardToHandFromDeck(deck);
             if (isHandBust()) break;
         }
     }
