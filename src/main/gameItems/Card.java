@@ -1,4 +1,4 @@
-package main;
+package main.gameItems;
 
 import java.util.Arrays;
 
@@ -35,6 +35,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return this.suit + this.value;
+        return suit + value;
     }
 }

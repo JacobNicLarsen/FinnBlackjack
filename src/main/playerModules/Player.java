@@ -1,7 +1,7 @@
 package main.playerModules;
 
-import main.Card;
-import main.Deck;
+import main.gameItems.Card;
+import main.gameItems.Deck;
 
 import java.util.ArrayList;
 

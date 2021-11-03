@@ -1,4 +1,7 @@
-package main;
+package main.fileReaders;
+
+import main.gameItems.Card;
+import main.gameItems.Deck;
 
 import java.io.File;
 import java.io.FileNotFoundException;

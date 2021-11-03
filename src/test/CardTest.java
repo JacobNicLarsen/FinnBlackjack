@@ -1,6 +1,6 @@
 package test;
 
-import main.Card;
+import main.gameItems.Card;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

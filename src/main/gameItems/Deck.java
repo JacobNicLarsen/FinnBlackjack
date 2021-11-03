@@ -1,4 +1,6 @@
-package main;
+package main.gameItems;
+
+import main.gameItems.Card;
 
 import java.util.*;
 
@@ -31,11 +33,11 @@ public class Deck {
     }
 
     public boolean isEmpty() {
-        return this.deck.isEmpty();
+        return deck.isEmpty();
     }
 
     public int size() {
-        return this.deck.size();
+        return deck.size();
     }
 
     public void fill() {

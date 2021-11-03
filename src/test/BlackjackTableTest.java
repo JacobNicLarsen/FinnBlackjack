@@ -1,8 +1,8 @@
 package test;
 
 import main.BlackjackTable;
-import main.Card;
-import main.Deck;
+import main.gameItems.Card;
+import main.gameItems.Deck;
 import main.playerModules.Dealer;
 import main.playerModules.Gambler;
 import main.playerModules.Player;
@@ -150,6 +150,8 @@ class BlackjackTableTest {
                 () -> assertEquals(blackjackTable.getGambler(), winner)
                 );
     }
+
+
 
     private BlackjackTable generateBlackjackTableWithCustomDeck(Deck deck) {
         Dealer dealer = new Dealer("Dealer");

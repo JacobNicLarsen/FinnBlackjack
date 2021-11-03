@@ -1,5 +1,7 @@
 package main;
 
+import main.fileReaders.FileDeckReader;
+import main.gameItems.Deck;
 import main.playerModules.Dealer;
 import main.playerModules.Gambler;
 import main.playerModules.Player;
@@ -21,6 +23,7 @@ public class BlackjackTable {
         this.dealer = dealer;
         this.gambler = gambler;
         this.deck = FileDeckReader.readDeckFile(filePath);
+        if (deck.isEmpty()) throw new IllegalArgumentException("Did not find file");
     }
 
     public String fullGame() {

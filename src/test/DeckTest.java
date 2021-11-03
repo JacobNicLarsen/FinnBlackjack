@@ -1,7 +1,7 @@
 package test;
 
-import main.Card;
-import main.Deck;
+import main.gameItems.Card;
+import main.gameItems.Deck;
 import org.junit.jupiter.api.Test;
 
 import java.util.Stack;

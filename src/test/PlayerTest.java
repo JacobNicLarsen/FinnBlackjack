@@ -1,6 +1,7 @@
 package test;
 
-import main.*;
+import main.gameItems.Card;
+import main.gameItems.Deck;
 import main.playerModules.Gambler;
 import main.playerModules.Player;
 import org.junit.jupiter.api.Test;
